@@ -1,0 +1,102 @@
+             
+			            
+ sudo apt update
+ apt upgrade -y
+   apt install postgresql-10
+   apt search postgresql
+   mkdir Postgresql
+   cd Postgresql/
+  add-apt-repository 'deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main'
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  apt update
+   apt install postgresql-10
+  apt show postgresql
+    sudo apt install postgresql postgresql-contrib
+   sudo systemctl status postgresql
+    sudo su - postgres
+	
+	postgres=# ALTER USER postgres PASSWORD '8085';
+    sudo -u postgres createuser -e suryavanshi
+    sudo su - postgres
+   apt install postgresql postgresql-client -y
+   systemctl status postgresql
+   psql --version
+   psql -h localhost -U postgres
+   
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Certainly! Here's a step-by-step guide to installing PostgreSQL 10.5 on Ubuntu with custom configurations such as setting up a username, password, and specifying a port:
+
+Update Package Index:
+Ensure your package index is up to date:
+
+sql
+Copy code
+sudo apt update
+Install PostgreSQL:
+Install PostgreSQL 10.5 from the Ubuntu repositories:
+
+Copy code
+sudo apt install postgresql-10
+Start PostgreSQL Service:
+After installation, PostgreSQL service should start automatically. If not, you can start it manually:
+
+sql
+Copy code
+sudo systemctl start postgresql
+Enable PostgreSQL Service to Start on Boot:
+To ensure PostgreSQL starts automatically on system boot:
+
+bash
+Copy code
+sudo systemctl enable postgresql
+Access PostgreSQL Prompt:
+By default, PostgreSQL creates a user named "postgres" with administrative privileges. You can access the PostgreSQL prompt using this user:
+
+Copy code
+sudo -u postgres psql
+Change PostgreSQL "postgres" User Password (Optional):
+You can change the password for the "postgres" user (or any other user) within the PostgreSQL prompt:
+
+Copy code
+\password postgres
+Create a New Role (User):
+Create a new user with desired username and password:
+
+sql
+Copy code
+CREATE ROLE myuser WITH LOGIN PASSWORD 'mypassword';
+Create a Database (Optional):
+Create a new database within the PostgreSQL prompt:
+
+sql
+Copy code
+CREATE DATABASE mydatabase;
+Grant Privileges (Optional):
+If you've created a new role and/or database, grant privileges to the user on the database:
+
+css
+Copy code
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
+Exit PostgreSQL Prompt:
+Once done, exit the PostgreSQL prompt:
+
+css
+Copy code
+\q
+Configure PostgreSQL to Listen on a Custom Port (Optional):
+Edit the PostgreSQL configuration file to specify a custom port. The configuration file is typically located at /etc/postgresql/10/main/postgresql.conf. Find the port parameter and change it to your desired port number (e.g., 5433).
+
+bash
+Copy code
+sudo nano /etc/postgresql/10/main/postgresql.conf
+Restart PostgreSQL Service:
+If you made changes to the configuration, restart PostgreSQL service:
+
+Copy code
+sudo systemctl restart postgresql
+That's it! You've installed PostgreSQL 10.5 on Ubuntu, configured a username and password, and optionally set up a custom port. You can now connect to PostgreSQL using the specified credentials and port.
+
+
+						
